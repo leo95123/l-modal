@@ -1,0 +1,21 @@
+{
+  "name": "modal",
+  "version": "1.0.0",
+  "description": "A react modal by next.js",
+  "main": "index.js",
+  "author": "Leo",
+  "license": "MIT",
+  "dependencies": {
+    "@ant-design/icons": "^4.3.0",
+    "@zeit/next-sass": "^1.0.1",
+    "next": "^10.0.4",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  }
+}
