@@ -1,0 +1,102 @@
+.l-modal {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  text-align: center;
+  z-index: 1101;
+  display: none;
+  &.l-modal-show {
+    display: block;
+  }
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  //遮罩
+  .l-modal-mask {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background: #000;
+    opacity: 0.5;
+    z-index: -1;
+  }
+  .l-modal-box {
+    margin: 0 auto;
+    width: 420px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    .l-modal-box-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 15px 10px 15px;
+      .icon-title-box {
+        display: flex;
+        align-items: center;
+        .icon {
+          margin-top: 2px;
+          margin-right: 8px;
+          font-size: 18px;
+        }
+        .title {
+          font-size: 18px;
+          color: #303133;
+        }
+      }
+      .close-box {
+        color: #909399;
+        cursor: pointer;
+      }
+    }
+    .l-modal-box-content {
+      padding: 10px 15px;
+      //   有图标右移
+      &.l-modal-box-content-right-move {
+        padding-left: 41px;
+      }
+    }
+    .l-modal-box-btns {
+      padding: 5px 15px 10px 15px;
+      text-align: right;
+      button {
+        padding: 9px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+        color: #fff;
+        background-color: #409eff;
+        border-color: #409eff;
+        outline: none;
+        cursor: pointer;
+        border: 1px solid #dcdfe6;
+        text-align: center;
+        &:focus,
+        &:hover {
+          background: #66b1ff;
+          border-color: #66b1ff;
+          color: #fff;
+        }
+        &:active {
+          background: #3a8ee6;
+          border-color: #3a8ee6;
+          color: #fff;
+        }
+        &.btn-confirm {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+// 动画
