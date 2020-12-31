@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import "animate.css";
 import "./index.scss";
 import {
   CheckCircleTwoTone,
@@ -24,59 +24,79 @@ const Icon = (props) => {
   }
 };
 
-function Modal(props) {
-  const [show, setShow] = useState(props.showModal); // 是否显示
-  const title = props.title || ""; //标题
-  const showConfirmBtn = props.showConfirmBtn || true; // 是否显示确认按钮
-  const showCancelBtn = props.showCancelBtn || true; // 是否显示取消按钮
-  const confirmBtnText = props.confirmBtnText || "确定"; // 确认按钮文字
-  const cancelBtnText = props.cancelBtnText || "取消"; // 取消按钮文字
-  const closeModal = () => {
-    setShow(false);
-  };
-
-  useEffect(() => {
-    setShow(props.showModal);
-  }, [props.showModal, setShow]);
+function Modal({
+  showModal = false, // 是否显示Modal
+  mask = true, // 是否显示遮罩
+  maskClose = true, // 点击遮罩是否关闭
+  type = "", // modal 类型:success,warning,error,info
+  title = "", //标题
+  showClose = true, // 是否显示关闭图标
+  showConfirmBtn = true, // 是否显示确认按钮
+  confirmBtnText = "确定", //确定按钮文字
+  showCancelBtn = true, // 是否显示取消按钮
+  cancelBtnText = "取消", // 取消按钮文字
+  onConfirm = () => {}, // 点击确认按钮事件
+  onCancel = () => {}, // 点击取消按钮事件
+  handleClose = () => {}, // 点击关闭图标事件
+  children = "主体内容", // 内容
+}) {
   return (
-    <div className={show ? "l-modal l-modal-show" : "l-modal"}>
-      {props.mask ? <div className="l-modal-mask"></div> : ""}
-      <div className="l-modal-box">
+    <div className={showModal ? "l-modal l-modal-show" : "l-modal"}>
+      {mask ? (
+        maskClose ? (
+          <div className="l-modal-mask" onClick={handleClose}></div>
+        ) : (
+          <div className="l-modal-mask"></div>
+        )
+      ) : (
+        ""
+      )}
+      <div
+        className={
+          showModal
+            ? "l-modal-box animate__animated animate__fadeInDown animate__faster"
+            : "l-modal-box l-modal-box-hide"
+        }
+      >
         <div className="l-modal-box-header">
           <div className="icon-title-box">
-            {props.type ? (
+            {type ? (
               <div className="icon">
-                <Icon type={props.type} />
+                <Icon type={type} />
               </div>
             ) : (
               ""
             )}
             <div className="title">{title}</div>
           </div>
-          <div className="close-box" onClick={props.handleClose}>
-            <CloseOutlined />
-          </div>
+          {showClose ? (
+            <div className="close-box" onClick={handleClose}>
+              <CloseOutlined />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div
           className={
-            !props.type
+            !type
               ? "l-modal-box-content"
               : "l-modal-box-content l-modal-box-content-right-move"
           }
         >
-          {props.children}
+          {children}
         </div>
 
         <div className="l-modal-box-btns">
           {showCancelBtn ? (
-            <button className="btn-confirm" onClick={props.onCancel}>
+            <button className="btn-cancel" onClick={onCancel}>
               {cancelBtnText}
             </button>
           ) : (
             ""
           )}
           {showConfirmBtn ? (
-            <button className="btn-cancel" onClick={props.onConfirm}>
+            <button className="btn-confirm" onClick={onConfirm}>
               {confirmBtnText}
             </button>
           ) : (
