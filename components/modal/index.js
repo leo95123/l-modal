@@ -37,7 +37,7 @@ function Modal({
   cancelBtnText = "取消", // 取消按钮文字
   onConfirm = () => {}, // 点击确认按钮事件
   onCancel = () => {}, // 点击取消按钮事件
-  handleClose = () => {}, // 点击关闭图标事件
+  handleClose = () => {}, // 点击关闭事件
   children = "主体内容", // 内容
 }) {
   return (
